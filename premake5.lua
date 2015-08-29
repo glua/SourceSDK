@@ -10,5 +10,7 @@ local osDefinition = {
 	linux	= { "POSIX", "_POSIX", "LINUX", "_LINUX", "GNUC" }
 }
 
+includedirs { "src/public" }
+
 libdirs(libLocations[os.get()])
 defines(osDefinition[os.get()])
