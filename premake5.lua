@@ -10,7 +10,15 @@ local osDefinition = {
 	linux	= { "POSIX", "_POSIX", "LINUX", "_LINUX", "GNUC" }
 }
 
-includedirs { "src/public" }
+includedirs { 
+	"src/common",
+	"src/public",
+	"src/public/tier0",
+	"src/public/tier1",
+	"src/public/tier2",
+	"src/public/tier3",
+	"src/public/mathlib",
+}
 
 libdirs(libLocations[os.get()])
 defines(osDefinition[os.get()])
