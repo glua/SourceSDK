@@ -52,9 +52,22 @@ if os.is "windows" then
 	links { "Ws2_32", "Rpcrt4" }
 	files "../src/tier1/processor_detect.cpp"
 else
+
+--[[
+	local function _WRAP(name)
+	        buildoptions("-Xlinker --wrap="..name)
+	end
+
+	_WRAP("fopen") _WRAP("freopen") _WRAP("open")    _WRAP("creat")    _WRAP("access")  _WRAP("__xstat")
+	_WRAP("stat")  _WRAP("lstat")   _WRAP("fopen64") _WRAP("open64")   _WRAP("opendir") _WRAP("__lxstat")
+	_WRAP("chmod") _WRAP("chown")   _WRAP("lchown")  _WRAP("symlink")  _WRAP("link")    _WRAP("__lxstat64")
+	_WRAP("mknod") _WRAP("utimes")  _WRAP("unlink")  _WRAP("rename")   _WRAP("utime")   _WRAP("__xstat64")
+	_WRAP("mount") _WRAP("mkfifo")  _WRAP("mkdir")   _WRAP("rmdir")    _WRAP("scandir") _WRAP("realpath")
+]]--
+
 	files {
 		"../src/tier1/processor_detect_linux.cpp",
 		"../src/tier1/qsort_s.cpp",
-		"../src/tier1/pathmatch.cpp"
+--		"../src/tier1/pathmatch.cpp"
 	}
 end
