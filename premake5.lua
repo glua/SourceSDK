@@ -10,8 +10,5 @@ local osDefinition = {
 	linux	= { "POSIX", "_POSIX", "LINUX", "_LINUX", "GNUC", "_DLL_EXT=so", "NO_MALLOC_OVERRIDE" }
 }
 
+libdirs(libLocations[os.get()])
 defines(osDefinition[os.get()])
-
-filter "system:not linux"
-	libdirs(libLocations[os.get()])
-filter {}

@@ -6,6 +6,8 @@ includedirs "../src/public/tier1"
 
 vpaths { Tier1 = "../src/tier1/*.cpp" }
 
+links "vstdlib"
+
 files {
 	"../src/tier1/bitbuf.cpp",
 	"../src/tier1/byteswap.cpp",
@@ -47,18 +49,13 @@ files {
 }
 
 filter "system:windows"
-	links { "vstdlib", "Ws2_32", "Rpcrt4" }
+	links { "Ws2_32", "Rpcrt4" }
 	files "../src/tier1/processor_detect.cpp"
 filter "system:linux"
 	buildoptions "-std=gnu++11"
-	prelinkcommands("ln -f " .. _SCRIPT_DIR .. "/../src/lib/public/linux32/libvstdlib.so " .. solution().location .. "/bin/libvstdlib.so")
-	linkoptions "bin/libvstdlib.so"
-filter "system:macosx"
-	links "vstdlib"
 filter "system:not windows"
 	files {
 		"../src/tier1/processor_detect_linux.cpp",
-		"../src/tier1/qsort_s.cpp",
-		"../src/tier1/pathmatch.cpp"
+		"../src/tier1/qsort_s.cpp"
 	}
 filter {}
